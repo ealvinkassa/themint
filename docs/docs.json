@@ -9,7 +9,9 @@
     "groups": [
       {
         "group": "Getting Started",
-        "pages": []
+        "pages": [
+          "untitled-page"
+        ]
       }
     ]
   }
