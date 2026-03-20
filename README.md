@@ -57,7 +57,7 @@ themint/
 
 The full project documentation is available on Mintlify.
 
-*(Link coming soon)*
+[themint.mintlify.app](https://themint.mintlify.app)
 
 ## Follow the project
 
