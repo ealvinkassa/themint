@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the Mint</title>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-mid: #2d6e47;
+    --green-accent: #4a9e6a;
+    --ink: #0d1f15;
+    --paper: #ffffff;
+    --muted: #888780;
+    --faint: #d3d1c7;
+    --warm: #f5f2eb;
+  }
+
+  html, body {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--paper);
+    font-family: 'Inconsolata', monospace;
+    color: var(--ink);
+  }
+
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(45, 110, 71, 0.18) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45, 110, 71, 0.18) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav {
+    padding: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    height: 32px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    transition: color 0.15s ease;
+  }
+
+  .nav-link:hover { color: var(--green-mid); }
+
+  .nav-link.primary {
+    color: var(--ink);
+    font-weight: 500;
+    border: 1px solid var(--ink);
+    padding: 6px 14px;
+    border-radius: 2px;
+    transition: all 0.15s ease;
+  }
+
+  .nav-link.primary:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .hero {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 80px 0;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--green-accent);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: fadeUp 0.5s ease 0.1s both;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--green-accent);
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 600;
+    line-height: 1.12;
+    color: var(--ink);
+    margin-bottom: 24px;
+    animation: fadeUp 0.5s ease 0.2s both;
+  }
+
+  .subline {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    animation: fadeUp 0.5s ease 0.3s both;
+  }
+
+  .cta-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+
+  .cta-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    border: 1px solid var(--faint);
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Inconsolata', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    transition: all 0.15s ease;
+  }
+
+  .cta-link:hover {
+    border-color: var(--green-accent);
+    color: var(--green-mid);
+  }
+
+  .cta-link.primary {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  .cta-link.primary:hover {
+    background: var(--green-mid);
+    border-color: var(--green-mid);
+  }
+
+  .btn-contribute {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Inconsolata', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 999px;
+    border: 1px solid var(--ink);
+    transition: all 0.15s ease;
+    animation: fadeUp 0.5s ease 0.4s both;
+    align-self: flex-start;
+  }
+
+  .btn-contribute:hover {
+    background: var(--green-mid);
+    border-color: var(--green-mid);
+  }
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .hero-right {
+    animation: fadeUp 0.5s ease 0.3s both;
+  }
+
+  .image-zone {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border: 1px solid var(--faint);
+    border-radius: 6px;
+    background: var(--warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-zone::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(45, 110, 71, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45, 110, 71, 0.07) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .image-zone-label {
+    position: relative;
+    z-index: 1;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  footer {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: var(--faint);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  .status-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .deco-line {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--faint) 30%, var(--faint) 70%, transparent);
+    pointer-events: none;
+  }
+
+  .deco-coords {
+    position: fixed;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-size: 10px;
+    color: var(--faint);
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @media (max-width: 768px) {
+    .page { padding: 0 24px; }
+    nav { padding: 24px 0; }
+    .nav-links { gap: 14px; }
+    .nav-link { font-size: 11px; }
+    .nav-link.primary { padding: 5px 10px; }
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 48px 0;
+    }
+    .headline { font-size: 36px; }
+    .hero-right { display: none; }
+    .deco-line, .deco-coords { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-link:not(.primary) { display: none; }
+    .headline { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="deco-line"></div>
+<div class="deco-coords">6.3703° N — 2.3912° E — COTONOU</div>
+
+<div class="page">
+
+  <nav>
+    <img
+      src="https://raw.githubusercontent.com/YOUR_USERNAME/themint/main/assets/logo.svg"
+      alt="the Mint"
+      class="logo"
+    />
+    <div class="nav-links">
+      <a href="#" class="nav-link">Threads</a>
+      <a href="#" class="nav-link">GitHub</a>
+      <a href="#" class="nav-link primary">Docs</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+
+    <div class="hero-left">
+      <div class="eyebrow">Behavioral study</div>
+      <h1 class="headline">
+        Decoding<br>
+        how Zoomers<br>
+        live with money.
+      </h1>
+      <p class="subline">
+        12 participants. 12 months. Real data.<br>
+        Cotonou, Bénin — March 2026.
+      </p>
+      <a href="#" class="btn-contribute">Contribute</a>
+    </div>
+
+    <div class="hero-right">
+      <div class="image-zone">
+        <span class="image-zone-label">Image — coming soon</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-copy">© the Mint 2026 — All rights reserved</span>
+    <div class="footer-status">
+      <div class="status-dot"></div>
+      <span class="status-label">Study ongoing</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
