@@ -14,5 +14,10 @@
         ]
       }
     ]
-  }
+  },
+  "logo": "/images/logo.svg",
+  "appearance": {
+    "default": "system"
+  },
+  "favicon": "/images/logo.svg"
 }
