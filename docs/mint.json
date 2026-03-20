@@ -1,8 +1,8 @@
 {
   "name": "the Mint",
   "logo": {
-    "light": "/assets/logo.svg",
-    "dark": "/assets/logo.svg"
+  "light": "https://raw.githubusercontent.com/ealvinkassa/themint/main/assets/logo.svg",
+  "dark": "https://raw.githubusercontent.com/ealvinkassa/themint/main/assets/logo.svg"
   },
   "favicon": "/assets/logo.svg",
   "colors": {
