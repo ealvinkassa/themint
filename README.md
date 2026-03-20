@@ -1,4 +1,8 @@
-![the Mint](assets/banner.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.png">
+  <img alt="the Mint" src="assets/banner-light.png">
+</picture>
 
 Behavioral study — Pretest phase ongoing — March 2026
 
