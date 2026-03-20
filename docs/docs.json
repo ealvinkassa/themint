@@ -1,16 +1,22 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Documentation",
-  "colors": {
-    "primary": "#0D9373"
+  "name": "the Mint",
+  "logo": {
+    "light": "/assets/logo.svg",
+    "dark": "/assets/logo.svg"
   },
-  "navigation": {
-    "groups": [
-      {
-        "group": "Getting Started",
-        "pages": []
-      }
-    ]
+  "favicon": "/assets/logo.svg",
+  "colors": {
+    "primary": "#2d6e47",
+    "light": "#4a9e6a",
+    "dark": "#1a3a2a"
+  },
+  "navigation": [
+    {
+      "group": "The project",
+      "pages": ["introduction"]
+    }
+  ],
+  "footerSocials": {
+    "github": "https://github.com/ealvinkassa/themint"
   }
 }
