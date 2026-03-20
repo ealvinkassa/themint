@@ -15,9 +15,18 @@
       }
     ]
   },
-  "logo": "/images/logo.svg",
+  "logo": {
+    "light": "/images/logo-light.svg",
+    "dark": "/images/logo-dark.svg"
+  },
   "appearance": {
     "default": "system"
   },
-  "favicon": "/images/logo.svg"
+  "favicon": {
+    "light": "/images/logo-light.svg",
+    "dark": "/images/logo-dark.svg"
+  },
+  "background": {
+    "decoration": "grid"
+  }
 }
